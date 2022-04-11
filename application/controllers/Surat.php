@@ -11,6 +11,7 @@ class Surat extends CI_Controller
 			redirect('login','refresh');
 		}
 		$this->load->model('Model_surat');
+		$this->load->model('Model_klasifikasi', '_db');
 	}
 
 
@@ -29,6 +30,11 @@ class Surat extends CI_Controller
 	public function tsuratmasuk()
 	{
 		$data['title'] = ' | Tambah Surat ';
+
+		$data = [
+			'klasifikasi' => $this->_db->get(),
+			'index' => $this->_db->get('tb_index'),
+		];
 		$this->load->view('templates/header', $data);
 		$this->load->view('templates/sidebar');
 		$this->load->view('backend/surat/masuk/tambah');
@@ -40,6 +46,13 @@ class Surat extends CI_Controller
 		$no_surat = $this->input->post('no_surat');
 		$asal_surat = $this->input->post('asal_surat');
 		$tujuan = $this->input->post('tujuan');
+		$tanggal_diterima = $this->input->post('tanggal_diterima');
+		$tanggal_surat = $this->input->post('tanggal_surat');
+		$klasifikasi = $this->input->post('klasifikasi');
+		$index_surat = $this->input->post('index_surat');
+		$isi_ringkasan = $this->input->post('isi_ringkasan');
+		$keterangan = $this->input->post('keterangan');
+		$user = $this->session->userdata('id_user');
 		// $tujuan = $this->input->post('tujuan');
 		$foto = $_FILES['file']['name'];
 		if ($foto =''){}
@@ -64,6 +77,13 @@ class Surat extends CI_Controller
 								'no_agenda' => $no_agenda,
 								'no_surat' => $no_surat,
 								'tujuan' => $tujuan,
+								'tgl_terima' => $tanggal_diterima,
+								'tgl_surat' => $tanggal_surat,
+								'kode_klasifikasi' => $klasifikasi,
+								'id_indeks' => $index_surat,
+								'isi' => $isi_ringkasan,
+								'keterangan' => $keterangan,
+								'tujuan' => $user,
 								// 'modified_by' => $ses,
 								'file' => $foto
 							 );

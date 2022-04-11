@@ -79,7 +79,7 @@
 
 
                                          <li  <?php echo $this->uri->segment(1) == 'indeks' && $this->uri->segment(2) == 'index' || $this->uri->segment(2) == 'edit' || $this->uri->segment(2) == 'tambah' || $this->uri->segment(1) == '' && $this->uri->segment(2) == '' ? 'class="mm-active"':'' ?>>
-                                            <a style="font-size: 13px;" href="<?php echo base_url('indeks/data'); ?>" >
+                                            <a style="font-size: 13px;" href="<?php echo base_url('indeks'); ?>" >
                                                 <i class="metismenu-icon pe-7s-users"></i>
                                                 Index
                                             </a>
