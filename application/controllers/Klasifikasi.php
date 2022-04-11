@@ -57,28 +57,69 @@ class Klasifikasi extends CI_Controller {
 		$this->load->view('templates/footer');
 	}
 
+	public function edit($id)
+	{
+		$row = $this->_db->where('id_klasifikasi', $id)->first();
+
+		
+		$data = [
+			'id' =>	$row->id_klasifikasi,
+			'nama' => $row->nama,
+			'kode' => $row->kode,
+			'uraian' => $row->uraian,
+		];
+		$data['title'] = ' | Edit Data Klasifikasi';
+		$this->load->view('templates/header', $data);
+		$this->load->view('templates/sidebar');
+		$this->load->view('backend/klasifikasi/tambah',$data);
+		$this->load->view('templates/footer');
+	}
+
 	public function save()
 	{
-		$this->_validate();
-		if ($this->form_validation->run() == FALSE) {
-			$this->session->set_flashdata('pesan', '<div class="alert alert-warning">'.validation_errors().'</div>');
-			redirect('klasifikasi/add');
+		if ($this->input->post('id') != null) {
+			$this->form_validation->set_rules('kode', 'Kode', 'trim|required');
+			$this->form_validation->set_rules('nama', 'Nama Klasifikasi', 'trim|required');
+			if ($this->form_validation->run() == FALSE) {
+				$this->session->set_flashdata('pesan', '<div class="alert alert-warning">'.validation_errors().'</div>');
+				redirect('klasifikasi/edit/'.$this->input->post('id'));
+			} else {
+				$post =  $this->input->post(null, true);
+				$data = [
+					'kode' => $post['kode'],
+					'nama' => $post['nama'],
+					'uraian' => $post['uraian'],
+				];
+				
+				$save = $this->_db->where('id_klasifikasi', $this->input->post('id'))->update($data);
+				if ($save) {
+					$this->session->set_flashdata('pesan', '<div class="alert alert-success">Berhasil mengupdate data</div>');
+				redirect('klasifikasi');
+				}
+			}
 		} else {
-			$post =  $this->input->post(null, true);
-			$data = [
-				'kode' => $post['kode'],
-				'nama' => $post['nama'],
-				'uraian' => $post['uraian'],
-				'id_user'	=> $this->session->userdata('id_user')
-			];
-			
+			$this->_validate();
+			if ($this->form_validation->run() == FALSE) {
+				$this->session->set_flashdata('pesan', '<div class="alert alert-warning">'.validation_errors().'</div>');
+				redirect('klasifikasi/add');
+			} else {
+				$post =  $this->input->post(null, true);
+				$data = [
+					'kode' => $post['kode'],
+					'nama' => $post['nama'],
+					'uraian' => $post['uraian'],
+					'id_user'	=> $this->session->userdata('id_user')
+				];
+				
 
-			$save = $this->_db->create($data);
-			if ($save) {
-				$this->session->set_flashdata('pesan', '<div class="alert alert-success">Berhasil menyimpan data</div>');
-			redirect('klasifikasi');
+				$save = $this->_db->create($data);
+				if ($save) {
+					$this->session->set_flashdata('pesan', '<div class="alert alert-success">Berhasil menyimpan data</div>');
+				redirect('klasifikasi');
+				}
 			}
 		}
+		
 	}
 
 	public function _validate()

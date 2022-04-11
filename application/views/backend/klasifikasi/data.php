@@ -30,7 +30,7 @@
                                         <td><?= $row->nama ?></td>
                                         <td><?= $row->uraian ?></td>
                                         <td>
-                                            <a href="" class="btn btn-warning "><i class="fa fa-pen"></i> Edit</a>
+                                            <a href="<?= base_url('klasifikasi/edit/'.$row->id_klasifikasi) ?>" class="btn btn-warning "><i class="fa fa-pen"></i> Edit</a>
                                             <a onclick="return confirm('apakah anda ingin menghapus data ?')" href="<?= base_url('klasifikasi/deleteData/'.$row->id_klasifikasi) ?>" class="btn btn-danger"><i class="fa fa-trash"></i> Hapus</a>
                                         </td>
                                     </tr>

@@ -14,7 +14,7 @@
                                         <a style="font-size: 12px;" href="<?php echo base_url('surat/tsuratmasuk'); ?>" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> Surat Masuk</a>
                                         </h5>
                                         <div class="table-responsive">
-                                        <table class="mb-0 table table-bordered table-hover">
+                                        <table class="mb-0 table table-bordered table-hover datatable">
                                             <thead>
                                             <tr>
                                                 <th style="text-align: center; font-size: 12px;">NO</th>
