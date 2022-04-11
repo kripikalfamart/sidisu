@@ -69,8 +69,42 @@
                 <!-- </form> -->
                 <?php echo form_close(); ?>
               </div>
-              <div class="md-6">
-                <h5 class="card-title">Disposisi Surat</h5>
+              <div class="md-12">
+                <h5 class="card-title">Data Surat</h5>
+                <table class="table table-bordered">
+                    <?php foreach ($datas as $row): ?>
+                      <tr>
+                        <td>Tujuan Surat</td>
+                        <td> <?= $row->tujuan ?></td>
+                      </tr>
+                      <tr>
+                        <td>
+                          Asal Surat
+                        </td>
+                        <td>
+                          <?= $row->asal_surat ?>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          Nomor Surat
+                        </td>
+                        <td>
+                          <?= $row->no_surat ?>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>
+                          File
+                        </td>
+                        <td>
+                          <a href="<?php echo base_url('datasurat/masuk/'.$row->file) ?>"><?php echo $row->file; ?></a>
+                        </td>
+                      </tr>
+
+                    <?php endforeach ?>
+                </table>
               </div>
             </div>    
         </div>
