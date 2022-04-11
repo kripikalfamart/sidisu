@@ -18,5 +18,13 @@
                 <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
         </div>
     </div>
-<script type="text/javascript" src="<?php echo base_url('assets/scripts/main.js'); ?>"></script></body>
+<script type="text/javascript" src="<?php echo base_url('assets/scripts/main.js'); ?>"></script>
+<script type="text/javascript" src="<?= base_url('assets/datatables/datatables.min.js') ?>"></script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.datatable').DataTable();
+    });
+</script>
+</body>
 </html>

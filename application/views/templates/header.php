@@ -21,7 +21,11 @@
     <meta name="description" content="This is an example dashboard created using build-in elements and components.">
     <meta name="msapplication-tap-highlight" content="no">
     
-<link href="<?php echo base_url('assets/arc/main.css');?>" rel="stylesheet"></head>
+<link href="<?php echo base_url('assets/arc/main.css');?>" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="<?= base_url('assets/datatables/datatables.min.css') ?>">
+
+<script type="text/javascript" src="<?= base_url('assets/js/jquery/jquery-3.6.0.min.js') ?>"></script>
+</head>
 <body>
     <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header ">
         <div class="app-header header-shadow bg-mean-fruit">
