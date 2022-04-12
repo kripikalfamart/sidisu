@@ -32,9 +32,9 @@ class Disposisi extends CI_Controller {
 	{
 		$data['title'] = ' | Disposisi Surat';
 
-		$data_surat_masuk = $this->db->select('tb_disposisi.*, tb_suratmasuk.*, tb_klasifikasi.nama as nama_klasifikasi');
+		$data_surat_masuk = $this->db->select(' tb_suratmasuk.*, tb_klasifikasi.nama as nama_klasifikasi');
 		$this->db->join('tb_klasifikasi', 'tb_klasifikasi.kode = tb_suratmasuk.kode_klasifikasi', 'left');
-		$this->db->where('tb_disposisi.id_suratmasuk', $id);
+		$this->db->where('tb_suratmasuk.id_suratmasuk', $id);
 		$this->db->from('tb_suratmasuk');
 		$datas = $this->db->get()->row();
 

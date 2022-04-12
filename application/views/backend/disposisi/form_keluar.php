@@ -16,7 +16,7 @@
                
             
             
-                    <div class="mb3"><label for="" class="form-label">Tujuan Disposisi</label>
+                    <div class="mb3"><label for="" class="form-label">Penerima</label>
                       <input type="text" name="tujuan" class="form-control" placeholder="Tujuan..">
                     </div>
                 
