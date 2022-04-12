@@ -6,7 +6,7 @@
  <div class="tab-content">
     <div class="tab-pane tabs-animation fade show active" id="tab-content-0" role="tabpanel">
       <div class="main-card mb-3 card">
-        <div class="card-body"><h5 class="card-title">Disposisi Surat Masuk</h5>
+        <div class="card-body"><h5 class="card-title">Disposisi Surat Keluar</h5>
           <!-- <form class="" > -->
             <div class="col-md-12"><?php echo $this->session->flashdata('pesan'); ?></div>
             
@@ -70,44 +70,7 @@
                 <!-- </form> -->
                 
               </div>
-              <div class="col-md-4" style="margin-top: 20px;">
-                <h5 class="card-title">Data Surat</h5>
-                <table class="table table-bordered">
-                    <?php foreach ($datas as $row): ?>
-                      <input type="hidden" name="id" value="<?= $row->id_suratmasuk ?>">
-                      <tr>
-                        <td>Tujuan Surat</td>
-                        <td> <?= $row->tujuan ?></td>
-                      </tr>
-                      <tr>
-                        <td>
-                          Asal Surat
-                        </td>
-                        <td>
-                          <?= $row->asal_surat ?>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          Nomor Surat
-                        </td>
-                        <td>
-                          <?= $row->no_surat ?>
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <td>
-                          File
-                        </td>
-                        <td>
-                          <a href="<?php echo base_url('datasurat/masuk/'.$row->file) ?>"><?php echo $row->file; ?></a>
-                        </td>
-                      </tr>
-
-                    <?php endforeach ?>
-                </table>
-              </div>
+             
               <?php echo form_close(); ?>
             </div>    
         </div>

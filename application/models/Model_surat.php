@@ -57,17 +57,21 @@ class Model_surat extends CI_Model
 	public function edsuratkeluar($where)
 	{
 		$this->db->where($where);
-		return $this->db->get('tb_suratkeluar', $where)->result();
+		return $this->db->get('tb_suratkeluar', $where)->row();
 	}
 	public function updatesuratkeluar($where)
 	{
 		$data = array(
-						'no_agenda' => $no_agenda,
-						'no_surat' => $no_surat,
-						'tujuan' => $tujuan,
-						// 'modified_by' => $ses,
-						'file' => $foto
-					);
+					'no_agenda' 		=> $row->no_agenda,
+					'no_surat' 			=> $row->no_surat,
+					'tujuan'		 	=> $row->tujuan,
+					'tanggal_diterima' 		=> $row->tgl_catat,
+					'tanggal_surat' 		=> $row->tgl_surat,
+					'kode_klasifikasi' 	=> $row->kode_klasifikasi,
+					'index_surat' 			=> $row->id_index,
+					'isi_ringkasan' 				=> $row->isi,
+					'keterangan' 		=> $row->keterangan,
+		);
 		$this->db->where($where);
 		$this->db->update('tb_suratkeluar', $data);
 		$this->session->set_flashdata('pesan', '<div class="alert alert-success">Berhasil Perbarui Data.!</div>');

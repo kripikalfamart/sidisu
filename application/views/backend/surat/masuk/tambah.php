@@ -75,7 +75,7 @@
               <div class="col-md-6">
                 <div class="position-relative form-group"><label for="" class="">Index</label>
                   <select class="form-control" name="index_surat">
-                    <option>Pilih Index</option>
+                    <option value="0">Pilih Index</option>
                       <?php foreach ($index as $row): ?>
                       <option value="<?= $row->id_index ?>" <?= $index_surat != null && $index_surat == $row->id_index ? 'selected' : '' ?>> <?= $row->kode.' - '.$row->nama_index ?></option>
                     <?php endforeach ?>
@@ -100,7 +100,7 @@
             <div class="form-row">
               <div class="col-md-6">
                 <div class="position-relative form-group"><label for="" class="">File/Surat/Dokumen</label>
-                  <input type="file" name="file" class="form-control" placeholder="Surat" value="<?= $file ?>">
+                  <input type="file" name="file" class="form-control" placeholder="Surat" >
                 </div>
               </div>
             </div>

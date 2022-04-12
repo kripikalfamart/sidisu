@@ -28,6 +28,61 @@ class Disposisi extends CI_Controller {
 		$this->load->view('templates/footer');
 	}
 
+	public function surat($id)
+	{
+		$data['title'] = ' | Disposisi Surat';
+
+		$data_surat_masuk = $this->db->select('tb_disposisi.*, tb_suratmasuk.*, tb_klasifikasi.nama as nama_klasifikasi');
+		$this->db->join('tb_klasifikasi', 'tb_klasifikasi.kode = tb_suratmasuk.kode_klasifikasi', 'left');
+		$this->db->where('tb_disposisi.id_suratmasuk', $id);
+		$this->db->from('tb_suratmasuk');
+		$datas = $this->db->get()->row();
+
+		$riwayat = $this->db->select('tb_disposisi.*, tb_suratmasuk.*, tb_klasifikasi.nama as nama_klasifikasi');
+		$this->db->join('tb_suratmasuk', 'tb_suratmasuk.id_suratmasuk = tb_disposisi.id_suratmasuk', 'left');
+		$this->db->join('tb_klasifikasi', 'tb_klasifikasi.kode = tb_suratmasuk.kode_klasifikasi', 'left');
+		$this->db->where('tb_disposisi.id_suratmasuk', $id);
+		$this->db->from('tb_disposisi');
+		$data_riwayat = $this->db->get()->result();
+
+
+		$data['row'] = $datas;
+		$data['datas'] = $data_riwayat;
+
+		$this->load->view('templates/header', $data);
+		$this->load->view('templates/sidebar');
+		$this->load->view('backend/disposisi/surat',$data);
+		$this->load->view('templates/footer');
+	}
+
+	public function surat_keluar($id)
+	{
+		$data['title'] = ' | Disposisi Surat';
+
+		$data_surat_masuk = $this->db->select('tb_suratkeluar.*, tb_klasifikasi.nama as nama_klasifikasi');
+		$this->db->join('tb_klasifikasi', 'tb_klasifikasi.kode = tb_suratkeluar.kode_klasifikasi', 'left');
+		$this->db->where('tb_suratkeluar.id_suratkeluar', $id);
+		$this->db->from('tb_suratkeluar');
+		$datas = $this->db->get()->row();
+
+		$riwayat =  $this->db->select('tb_disposisi.*, tb_suratkeluar.*, tb_klasifikasi.nama as nama_klasifikasi');
+		$this->db->join('tb_suratkeluar', 'tb_suratkeluar.id_suratkeluar = tb_disposisi.id_suratkeluar', 'left');
+		$this->db->join('tb_klasifikasi', 'tb_klasifikasi.kode = tb_suratkeluar.kode_klasifikasi', 'left');
+		$this->db->where('tb_disposisi.id_suratkeluar', $id);
+		$this->db->from('tb_disposisi');
+		$data_riwayat = $this->db->get()->result();
+
+
+		$data['row'] = $datas;
+		$data['datas'] = $data_riwayat;
+
+		$this->load->view('templates/header', $data);
+		$this->load->view('templates/sidebar');
+		$this->load->view('backend/disposisi/surat_keluar',$data);
+		$this->load->view('templates/footer');
+	}
+
+
 	public function set($id)
 	{
 		$data['title'] = ' | Disposisi Surat';
@@ -46,17 +101,35 @@ class Disposisi extends CI_Controller {
 		$this->load->view('templates/footer');
 	}
 
+	public function set_keluar($id)
+	{
+		$data['title'] = ' | Disposisi Surat';
+
+		$data_surat_masuk = $this->db->select('tb_suratkeluar.*, tb_klasifikasi.nama as nama_klasifikasi, tb_index.nama_index ');
+		$this->db->join('tb_klasifikasi', 'tb_klasifikasi.kode = tb_suratkeluar.kode_klasifikasi', 'left');
+		$this->db->join('tb_index', 'tb_index.id_index = tb_suratkeluar.id_index', 'left');
+		$this->db->where('tb_suratkeluar.id_suratkeluar', $id);
+		$this->db->from('tb_suratkeluar');
+		$datas = $this->db->get()->result();
+
+		$data['datas'] = $datas;
+		$this->load->view('templates/header', $data);
+		$this->load->view('templates/sidebar');
+		$this->load->view('backend/disposisi/form_keluar',$data);
+		$this->load->view('templates/footer');
+	}
+
 	public function save()
 	{
 		$data = [
-			'tujuan'		=> $this->input->post('tujuan'),
+			'tujuan_disposisi'		=> $this->input->post('tujuan'),
 			'isi_disposisi'	=> $this->input->post('isi_disposisi'),
 			'sifat'	=> $this->input->post('sifat'),
 			'batas_waktu'	=> $this->input->post('batas_waktu'),
 			'catatan'	=> $this->input->post('keterangan'),
 			'id_suratmasuk'	=> $this->input->post('id'),
 			'id_user'	=> $this->session->userdata('id_user'),
-			'status'	=> 'Diprosess'
+			'status'	=> $this->input->post('status_surat')
 		];
 		$this->_validate();
 		if ($this->form_validation->run() == FALSE) {
@@ -66,7 +139,7 @@ class Disposisi extends CI_Controller {
 				$save = $this->_db->create($data, 'tb_disposisi');
 				if ($save) {
 					$this->session->set_flashdata('pesan', '<div class="alert alert-success">Berhasil Mengset Disposisi</div>');
-				redirect('disposisi');
+				redirect('disposisi/surat/'.$this->input->post('id'));
 				}
 			}
 

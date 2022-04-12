@@ -37,6 +37,21 @@ class Indeks extends CI_Controller {
 		$this->load->view('templates/footer');
 	}
 
+	public function edit($id)
+	{
+		$row = $this->_db->where('id_index', $id)->first('tb_index');
+		$data = [
+			'id' 	=> $row->id_index	,
+			'nama' 	=> $row->nama_index ,
+			'kode' 	=> $row->kode ,
+		];
+		$data['title'] = ' | Tambah Index ';
+		$this->load->view('templates/header', $data);
+		$this->load->view('templates/sidebar');
+		$this->load->view('backend/index/tambah',$data);
+		$this->load->view('templates/footer');
+	}
+
 	public function save()
 	{
 		if ($this->input->post('id') != null) {
@@ -51,7 +66,7 @@ class Indeks extends CI_Controller {
 					'nama_index' => $post['nama'],
 				];
 				
-				$save = $this->_db->where('id_klasifikasi', $this->input->post('id'))->update($data, 'tb_index');
+				$save = $this->_db->where('id_index', $this->input->post('id'))->update($data, 'tb_index');
 				if ($save) {
 					$this->session->set_flashdata('pesan', '<div class="alert alert-success">Berhasil mengupdate data</div>');
 				redirect('indeks');

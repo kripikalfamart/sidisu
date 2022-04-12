@@ -2,7 +2,7 @@
 <div class="app-main__outer">
     <div class="app-main__inner">
        
-            <h5 >Data Semua disposisi</h5>
+            <h5 >Data Disposisi Surat Masuk</h5>
             <div class="col-lg-4"><?php echo $this->session->flashdata('pesan'); ?></div>
 
         <!-- row -->
@@ -11,8 +11,51 @@
             <div class="main-card mb-3 card">
                 <div class="card-body">
                     <h5 class="card-title">
-                    <a style="font-size: 12px;" href="<?php echo base_url('surat/tsuratmasuk'); ?>" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> Surat Masuk</a>
+                    <a style="font-size: 12px;" href="<?php echo base_url('disposisi/set/'.$row->id_suratmasuk); ?>" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> Disposisi </a>
                     </h5>
+                    <table class="table">
+                        <tr>
+                            <td>No Surat : </td>
+                            <td><?= $row->no_surat ?></td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                Tujuan Surat : 
+                            </td>
+                            <td>
+                                <?= $row->tujuan ?>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                Klasifikasi : 
+                            </td>
+                            <td>
+                                <?= $row->kode_klasifikasi ?> - <?= $row->nama_klasifikasi ?>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                Asal Surat : 
+                            </td>
+                            <td>
+                                <?= $row->asal_surat ?> 
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                Tanggal Terima : 
+                            </td>
+                            <td>
+                                <?= $row->tgl_terima ?>
+                            </td>
+                        </tr>
+                    </table>
+                    <h5 class="label">Riwayat Disposisi</h5>
                     <div class="table-responsive">
                     <table class="mb-0 table table-bordered table-hover datatable">
                         <thead>

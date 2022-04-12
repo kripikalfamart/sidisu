@@ -34,8 +34,9 @@
                                 <td style="text-align: center; font-size: 12px;"><?php echo $r->no_surat; ?></td>
                                 <td style="text-align: center; font-size: 12px;"><?php echo $r->tujuan; ?></td>
                                 <td   style="text-align: center; font-size: 12px;">
-                                    <a href="<?php echo base_url('surat/esuratkeluar/'.$r->id_suratkeluar); ?>"><i class="fa fa-pen" title="Edit Data Surat "></i></a> |
-                                <a onclick="return confirm('apakah anda ingin menghapus data ?')" href="<?php echo base_url('surat/hsuratkeluar/'.$r->id_suratkeluar); ?>"><i class="fa fa-trash" title="Hapus Data Surat "></i></a> 
+                                    <a class="btn btn-info" href="<?php echo base_url('disposisi/surat_keluar/'.$r->id_suratkeluar); ?>"><i class="fa fa-cog" title="Edit Data Surat "></i> Disposisi </a> 
+                                    <a class="btn btn-warning" href="<?php echo base_url('surat/esuratkeluar/'.$r->id_suratkeluar); ?>"><i class="fa fa-pen" title="Edit Data Surat "></i></a> 
+                                <a class="btn btn-danger" onclick="return confirm('apakah anda ingin menghapus data ?')" href="<?php echo base_url('surat/hsuratkeluar/'.$r->id_suratkeluar); ?>"><i class="fa fa-trash" title="Hapus Data Surat "></i></a> 
                                 </td>
                             </tr>
                             <?php $i++; } ?>
