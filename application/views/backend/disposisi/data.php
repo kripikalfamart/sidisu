@@ -24,6 +24,7 @@
                             <th style="text-align: center; font-size: 12px;">ASAL SURAT</th>
                             <th style="text-align: center; font-size: 12px;">TUJUAN</th>
                             <th style="text-align: center; font-size: 12px;">DISPOSISI</th>
+                            <th style="text-align: center; font-size: 12px;">Status Disposisi</th>
                             <th style="text-align: center; font-size: 12px;">ACTION</th>
                         </tr>
                         </thead>
@@ -36,11 +37,14 @@
                             <td style="text-align: center; font-size: 12px;"><?php echo $r->no_surat; ?></td>
                             <td style="text-align: center; font-size: 12px;"><?php echo $r->asal_surat; ?></td>
                             <td style="text-align: center; font-size: 12px;"><?php echo $r->tujuan; ?></td>
-                            <td>
-                                
+                            <td style="text-align: center; font-size: 12px;">
+                                <span class="badge bg-success text-white"><?php echo $r->tujuan_disposisi; ?></span>
+                            </td>
+                           <td style="text-align: center; font-size: 12px;">
+                                <span class="badge bg-success text-white"><?php echo $r->status; ?></span>
                             </td>
                             <td   style="text-align: center; font-size: 12px;">
-                                <a class="btn btn-info" href="<?php echo base_url('surat/esuratmasuk/'.$r->id_suratmasuk); ?>"><i class="fa fa-cog" title="Edit Data Surat "></i> DISPOSISI</a> 
+                                <a class="btn btn-info" href="<?php echo base_url('disposisi/print/'.$r->id_suratmasuk); ?>"><i class="fa fa-cog" title="Edit Data Surat "></i> Print</a> 
                         
                             </td>
                         </tr>

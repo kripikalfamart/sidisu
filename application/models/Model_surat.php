@@ -19,7 +19,7 @@ class Model_surat extends CI_Model
 	public function edsuratmasuk($where)
 	{
 		$this->db->where($where);
-		return $this->db->get('tb_suratmasuk', $where)->result();
+		return $this->db->get('tb_suratmasuk', $where)->row();
 	}
 	public function updatesuratmasuk($where)
 	{
